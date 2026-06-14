@@ -1,6 +1,6 @@
 <?php
 require_once 'functions.php';
-/** @var mysqli $koneksi */ 
+/** @var mysqli $koneksi */
 
 // Jika user ternyata sudah melewati gerbang login, langsung lempar ke dashboard utama
 if (cekSudahLogin()) {
@@ -93,18 +93,33 @@ if (isset($_POST['signup'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Akun - DeCare</title>
 
-    <link href="assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter var', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
+
 <body class="min-h-screen flex items-center justify-center p-[16px] bg-blue-50/30">
 
     <div class="grid grid-cols-1 md:grid-cols-12 overflow-hidden max-w-[850px] w-full bg-white border border-blue-100/50 rounded-[32px] shadow-xl">
-        
+
         <div class="md:col-span-5 hidden md:flex flex-col justify-center p-10 bg-blue-50/60 border-r border-blue-100/30">
             <span class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">
                 Registrasi
@@ -128,9 +143,9 @@ if (isset($_POST['signup'])) {
                 Lengkapi data akun login dan profil data diri anda
             </p>
 
-            <?php if(!empty($errors)): ?>
+            <?php if (!empty($errors)): ?>
                 <div class="flex flex-col gap-1 p-3 bg-red-50 border border-red-100 rounded-xl text-xs font-medium text-red-600">
-                    <?php foreach($errors as $err): ?>
+                    <?php foreach ($errors as $err): ?>
                         <span>* <?= $err ?></span>
                     <?php endforeach; ?>
                 </div>
@@ -142,21 +157,21 @@ if (isset($_POST['signup'])) {
                         1. Kredensial Akun
                     </span>
                 </div>
-                
+
                 <div>
                     <label class="block mb-1 text-[10px] font-bold text-slate-700 uppercase">
                         Username
                     </label>
                     <input type="text" name="username" placeholder="Username akun" class="w-full px-3 py-1.5 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-blue-500">
                 </div>
-                
+
                 <div>
                     <label class="block mb-1 text-[10px] font-bold text-slate-700 uppercase">
                         Email
                     </label>
                     <input type="email" name="email" placeholder="contoh@gmail.com" class="w-full px-3 py-1.5 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-blue-500">
                 </div>
-                
+
                 <div class="sm:col-span-2">
                     <label class="block mb-1 text-[10px] font-bold text-slate-700 uppercase">
                         Password
@@ -169,21 +184,21 @@ if (isset($_POST['signup'])) {
                         2. Profil Pasien Utama
                     </span>
                 </div>
-                
+
                 <div>
                     <label class="block mb-1 text-[10px] font-bold text-slate-700 uppercase">
                         Nama Lengkap
                     </label>
                     <input type="text" name="nama_lengkap" placeholder="Sesuai KTP" class="w-full px-3 py-1.5 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-blue-500">
                 </div>
-                
+
                 <div>
                     <label class="block mb-1 text-[10px] font-bold text-slate-700 uppercase">
                         Nomor HP
                     </label>
                     <input type="text" name="nomor_hp" placeholder="08xxxxxxxxxx" class="w-full px-3 py-1.5 border border-gray-200 rounded-xl text-xs focus:outline-none focus:border-blue-500">
                 </div>
-                
+
                 <div class="sm:col-span-2">
                     <label class="block mb-1 text-[10px] font-bold text-slate-700 uppercase">
                         Alamat Rumah
@@ -199,7 +214,7 @@ if (isset($_POST['signup'])) {
             </form>
 
             <p class="text-center mt-4 text-xs text-gray-400">
-                Sudah memiliki akun? 
+                Sudah memiliki akun?
                 <a href="login.php" class="text-blue-600 font-bold hover:underline">
                     Login disini
                 </a>
@@ -208,4 +223,5 @@ if (isset($_POST['signup'])) {
     </div>
 
 </body>
+
 </html>
