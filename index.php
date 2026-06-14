@@ -214,7 +214,7 @@ $info_layanan = [
                     </div>
 
                     <div class="flex justify-center lg:justify-end items-start relative w-full mt-8 lg:mt-0 lg:h-[520px]">
-                        <img src="assets/img/gambar-heroSection.png" alt="Dokter DeCare & Ornamen Gigi" class="z-20 lg:absolute lg:right-[-20px] lg:top-[-115px] object-contain lg:object-right-top w-[90%] sm:w-[80%] lg:w-[640px] h-auto lg:max-w-none">
+                        <img src="assets/img/gambar-heroSection.png" alt="Dokter DeCare & Ornamen Gigi" class="z-20 lg:absolute lg:right-[-20px] lg:top-[-115px] object-contain lg:object-right-top w-[95%] sm:w-[70%] lg:w-[558px] h-auto lg:max-w-none">
                     </div>
 
                 </div>
