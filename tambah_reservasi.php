@@ -113,7 +113,7 @@ if (isset($_POST['simpan'])) {
         }
     }
 
-    // PROSES PENENTUAN ID PASIEN SECARA MULTI-PROFIL
+    // proses penentuan id pasien untuk multi profile
     if (empty($errors)) {
         if ($_SESSION['role'] === 'pasien') {
             $pilihan_pasien = $_POST['pilihan_pasien'];
@@ -148,9 +148,8 @@ if (isset($_POST['simpan'])) {
                 $id_pasien = (int)$pilihan_pasien;
             }
         } else {
-            // ========================================================
-            // ALUR SISI ADMIN: OTOMATIS DAFTAR JIKA BELUM ADA DI SISTEM
-            // ========================================================
+
+            // Alur sisi admin agar auto daftar jika belum terdaftar
             $nama_admin = htmlspecialchars(trim($_POST['nama_pasien_admin']));
             $hp_admin   = htmlspecialchars(trim($_POST['nomor_hp_admin']));
 
@@ -166,7 +165,7 @@ if (isset($_POST['simpan'])) {
                     // Jika sudah terdaftar, langsung ambil ID Pasien lamanya
                     $id_pasien = $row_p['id_pasien'];
                 } else {
-                    // Jika BELUM terdaftar, otomatis buatkan profil baru di bawah id_user Admin (id_user = 1)
+                    // Jika belu terdaftar, otomatis buatkan profil baru di bawah id_user Admin (id_user = 1)
                     $id_admin_induk = 1; // ID User Admin utama di database kamu
                     $alamat_default  = "Didaftarkan Offline oleh Admin";
 
@@ -183,7 +182,7 @@ if (isset($_POST['simpan'])) {
             }
         }
 
-        // JIKA ID PASIEN SUDAH DIKUNCI, SIMPAN ANTRIAN RESERVASI
+        // Jika ID pasien sudah dikunci, simpan antrian reservasi
         if (empty($errors) && $id_pasien !== null) {
             $query = "INSERT INTO reservasi (id_pasien, id_layanan, id_jadwal, tanggal_reservasi, keluhan, foto_gigi) VALUES (?, ?, ?, ?, ?, ?)";
             $stmt  = mysqli_prepare($koneksi, $query);
@@ -213,7 +212,21 @@ $teks_kembali = ($_SESSION['role'] === 'admin') ? 'Kembali ke Dashboard' : 'Kemb
 <head>
     <meta charset="UTF-8">
     <title>Tambah Reservasi Pasien - DeCare</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter var', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body class="bg-blue-50/20 font-sans min-h-screen p-4 sm:p-8 flex items-center justify-center">

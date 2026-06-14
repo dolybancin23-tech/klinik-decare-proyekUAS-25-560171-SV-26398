@@ -12,7 +12,7 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
     $id_reservasi  = (int)$_GET['id'];
     $id_user_login = (int)$_SESSION['user_id'];
 
-    // KEAMANAN MUTLAK: Hanya update jika id_reservasi cocok dengan id_user milik akun yang sedang login dan status masih Pending
+    // Update jika id_reservasi cocok dengan id_user milik akun yang sedang login dan status masih Pending
     $query = "UPDATE reservasi r 
               INNER JOIN pasien p ON r.id_pasien = p.id_pasien
               SET r.status_periksa = 'Dibatalkan' 

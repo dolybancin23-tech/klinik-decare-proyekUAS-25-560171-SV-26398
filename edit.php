@@ -45,7 +45,6 @@ if (isset($_POST['update'])) {
     }
 
     if (empty($errors)) {
-        // Pembaruan data tanpa melibatkan kolom foto yang sudah dihapus
         $query_update = "UPDATE pasien SET nama_lengkap = ?, nomor_hp = ?, alamat = ? WHERE id_pasien = ?";
         $stmt_update  = mysqli_prepare($koneksi, $query_update);
         mysqli_stmt_bind_param($stmt_update, "sssi", $nama_lengkap, $nomor_hp, $alamat, $id_pasien);
@@ -54,7 +53,6 @@ if (isset($_POST['update'])) {
             mysqli_stmt_close($stmt_update);
             $success_message = "Profil data pasien berhasil diperbarui!";
 
-            // Perbarui data array lokal agar perubahan langsung tercermin di form
             $data_lama['nama_lengkap'] = $nama_lengkap;
             $data_lama['nomor_hp'] = $nomor_hp;
             $data_lama['alamat'] = $alamat;
@@ -73,8 +71,21 @@ if (isset($_POST['update'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Pasien - DeCare Admin</title>
-    <link href="assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter var', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body class="min-h-screen flex items-center justify-center p-6 bg-slate-50/60">
@@ -105,7 +116,6 @@ if (isset($_POST['update'])) {
                 </div>
                 <div>
                     <h3 class="text-xs font-bold text-slate-900">Avatar Pasien</h3>
-                    <p class="text-[10px] text-gray-400 mt-0.5">Inisial otomatis berdasarkan nama pasien utama.</p>
                 </div>
             </div>
 

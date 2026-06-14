@@ -48,7 +48,21 @@ $reservasi = mysqli_stmt_get_result($stmtData);
 <head>
     <meta charset="UTF-8">
     <title>Panel Reservasi Pasien DeCare</title>
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter var', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body class="bg-blue-50/20 font-sans p-4 sm:p-8">

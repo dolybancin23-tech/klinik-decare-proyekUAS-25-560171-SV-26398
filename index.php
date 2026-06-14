@@ -9,12 +9,11 @@ if (isset($_SESSION['login']) && $_SESSION['role'] === 'admin') {
     exit;
 }
 
-// 3. AMBIL DATA LAYANAN DARI DATABASE
+// 3. ambil data layanan dari databse
 $query_layanan = "SELECT * FROM layanan ORDER BY id_layanan ASC";
 $result_layanan = mysqli_query($koneksi, $query_layanan);
 
-// 4. MAPPING DATA STATIS (Ikon & Deskripsi)
-// Karena di database tidak ada kolom deskripsi, kita pasangkan datanya di sini agar desain tetap cantik
+// 4. Mapping data statis
 $info_layanan = [
     1 => [
         'icon' => 'icon-pemutihan.svg',
@@ -62,8 +61,21 @@ $info_layanan = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeCare - Klinik Gigi Digital</title>
 
-    <link href="assets/css/style.css?v=<?= time(); ?>" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter var', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
 
 <body class="bg-white font-sans antialiased">

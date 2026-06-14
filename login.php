@@ -1,6 +1,6 @@
 <?php
 require_once 'functions.php';
-/** @var mysqli $koneksi */ 
+/** @var mysqli $koneksi */
 
 if (cekSudahLogin()) {
     header("Location: index.php");
@@ -21,18 +21,18 @@ if (isset($_POST['login'])) {
             $user_data = mysqli_fetch_assoc($result);
 
             if (password_verify($password_input, $user_data['sandi'])) {
-                
+
                 $_SESSION['login']     = true;
-                $_SESSION['user_id']   = $user_data['id_user']; // FIXED: id -> id_user
+                $_SESSION['user_id']   = $user_data['id_user'];
                 $_SESSION['username']  = $user_data['username'];
-                $_SESSION['role']      = $user_data['role']; 
+                $_SESSION['role']      = $user_data['role'];
 
                 if ($user_data['role'] === 'pasien') {
-                    $id_user = $user_data['id_user']; // FIXED: id -> id_user
-                    
+                    $id_user = $user_data['id_user'];
+
                     $query_pasien = "SELECT nama_lengkap FROM pasien WHERE id_user = '$id_user' LIMIT 1";
                     $res_pasien   = mysqli_query($koneksi, $query_pasien);
-                    
+
                     if (mysqli_num_rows($res_pasien) === 1) {
                         $pasien_data = mysqli_fetch_assoc($res_pasien);
                         $_SESSION['nama_pengguna'] = $pasien_data['nama_lengkap'];
@@ -45,7 +45,6 @@ if (isset($_POST['login'])) {
 
                 header("Location: index.php");
                 exit;
-
             } else {
                 $error_message = "Password yang Anda masukkan salah!";
             }
@@ -60,13 +59,28 @@ if (isset($_POST['login'])) {
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - DeCare</title>
-    <link href="assets/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter var', 'sans-serif'],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
+
 <body class="min-h-screen flex items-center justify-center p-4 bg-blue-50/30">
     <div class="w-full max-w-[420px] overflow-hidden p-8 bg-white border border-blue-100/50 rounded-[32px] shadow-xl">
         <div class="text-center mb-6">
@@ -95,4 +109,5 @@ if (isset($_POST['login'])) {
         <p class="text-center mt-6 text-xs text-gray-400">Belum memiliki akun? <a href="register.php" class="text-blue-600 font-bold hover:underline">Daftar sekarang</a></p>
     </div>
 </body>
+
 </html>
