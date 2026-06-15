@@ -25,13 +25,13 @@ $info_layanan = [
         'icon' => 'icon-salkar.svg',
         'desc' => 'Prosedur gigi yang digunakan untuk mengobati infeksi yang terjadi di pusat gigi.',
         'modal_desc' => 'Layanan spesialis untuk menyelamatkan gigi asli yang terinfeksi parah. Tim bedah mulut DeCare akan membersihkan saluran akar yang terinfeksi, menghilangkan saraf yang sakit, dan menambal secara permanen agar gigi dapat digunakan kembali.',
-        'durasi' => '90-120 Menit (2 Kunjungan)'
+        'durasi' => '120 Menit / Kunjungan'
     ],
     3 => [
         'icon' => 'icon-darurat.svg',
         'desc' => 'Masalah gigi yang membutuhkan perawatan segera, pendarahan, mengurangi rasa sakit, dll.',
         'modal_desc' => 'Penanganan cepat untuk masalah mendesak seperti sakit gigi parah, gigi patah akibat benturan, pendarahan gusi tidak terkendali, atau abses. Layanan darurat ini fokus untuk segera menghilangkan rasa sakit dan menstabilkan kondisi mulut Anda.',
-        'durasi' => '30-60 Menit (Sesuai Tindakan)'
+        'durasi' => '60 Menit / Sesuai Tindakan'
     ],
     4 => [
         'icon' => 'icon-cosmetic.svg',
@@ -315,7 +315,7 @@ $info_layanan = [
                         $icon = isset($info_layanan[$id]['icon']) ? $info_layanan[$id]['icon'] : 'icon-pencegahan.svg';
                         $desc = isset($info_layanan[$id]['desc']) ? $info_layanan[$id]['desc'] : 'Deskripsi layanan perawatan DeCare.';
                     ?>
-                        <div class="flex flex-col items-center text-center p-10 bg-white rounded-[24px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-lg transition-all h-full">
+                        <div class="flex flex-col items-center text-center p-10 bg-white rounded-[24px] shadow-lg hover:shadow-xl transition-shadow duration-300">
                             <div class="flex items-center justify-center mb-6 w-16 h-16 shrink-0 rounded-full bg-[#1da1f2]">
                                 <img src="assets/img/<?= $icon ?>" alt="<?= htmlspecialchars($layanan['nama_layanan']) ?>" class="w-8 h-8 object-contain">
                             </div>
@@ -439,7 +439,7 @@ $info_layanan = [
                         <hr class="w-full border-t border-gray-200/60 my-2">
 
                         <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-10 text-center md:text-left">
-                            <div class="w-[200px] h-[50px] lg:w-[240px] lg:h-[240px] rounded-[24px] overflow-hidden shadow-sm shrink-0">
+                            <div class="w-[200px] h-[200px] lg:w-[240px] lg:h-[240px] rounded-[24px] overflow-hidden shadow-sm shrink-0">
                                 <img src="assets/img/dokter-rizky.png" alt="Drg. Rizky Wijaya" class="w-full h-full object-cover">
                             </div>
                             <div class="flex flex-col justify-center pt-2">

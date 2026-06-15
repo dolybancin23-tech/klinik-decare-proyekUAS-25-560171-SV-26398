@@ -25,7 +25,7 @@ DELIMITER $$
 --
 -- Fungsi
 --
-CREATE DEFINER=`root`@`localhost` FUNCTION `fk_label_status` (`p_status` VARCHAR(20)) RETURNS VARCHAR(50) CHARSET utf8mb4 COLLATE utf8mb4_general_ci DETERMINISTIC BEGIN
+CREATE FUNCTION `fk_label_status` (`p_status` VARCHAR(20)) RETURNS VARCHAR(50) CHARSET utf8mb4 COLLATE utf8mb4_general_ci DETERMINISTIC BEGIN
     DECLARE v_label VARCHAR(50);
     IF p_status = 'Pending' THEN SET v_label = 'Menunggu Persetujuan';
     ELSEIF p_status = 'Disetujui' THEN SET v_label = 'Jadwal Dikonfirmasi';
@@ -35,7 +35,7 @@ CREATE DEFINER=`root`@`localhost` FUNCTION `fk_label_status` (`p_status` VARCHAR
     RETURN v_label;
 END$$
 
-CREATE DEFINER=`root`@`localhost` FUNCTION `fk_total_reservasi_pasien` (`p_id_pasien` INT) RETURNS INT(11) DETERMINISTIC BEGIN
+CREATE FUNCTION `fk_total_reservasi_pasien` (`p_id_pasien` INT) RETURNS INT(11) DETERMINISTIC BEGIN
     DECLARE v_total INT;
     SELECT COUNT(*) INTO v_total FROM reservasi WHERE id_pasien = p_id_pasien;
     RETURN v_total;
@@ -252,7 +252,7 @@ CREATE TABLE `view_laporan_omzet` (
 --
 DROP TABLE IF EXISTS `view_antrean_pending`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_antrean_pending`  AS SELECT `r`.`id_reservasi` AS `id_reservasi`, `p`.`nama_lengkap` AS `nama_pasien`, `l`.`nama_layanan` AS `nama_layanan`, `r`.`tanggal_reservasi` AS `tanggal_reservasi`, `r`.`status_periksa` AS `status_periksa` FROM ((`reservasi` `r` join `pasien` `p` on(`r`.`id_pasien` = `p`.`id_pasien`)) join `layanan` `l` on(`r`.`id_layanan` = `l`.`id_layanan`)) WHERE `r`.`status_periksa` = 'Pending' ;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_antrean_pending`  AS SELECT `r`.`id_reservasi` AS `id_reservasi`, `p`.`nama_lengkap` AS `nama_pasien`, `l`.`nama_layanan` AS `nama_layanan`, `r`.`tanggal_reservasi` AS `tanggal_reservasi`, `r`.`status_periksa` AS `status_periksa` FROM ((`reservasi` `r` join `pasien` `p` on(`r`.`id_pasien` = `p`.`id_pasien`)) join `layanan` `l` on(`r`.`id_layanan` = `l`.`id_layanan`)) WHERE `r`.`status_periksa` = 'Pending' ;
 
 -- --------------------------------------------------------
 
@@ -261,7 +261,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `view_laporan_omzet`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `view_laporan_omzet`  AS SELECT `r`.`tanggal_reservasi` AS `tanggal_reservasi`, count(`r`.`id_reservasi`) AS `jumlah_pasien`, sum(`l`.`harga`) AS `total_pendapatan` FROM (`reservasi` `r` join `layanan` `l` on(`r`.`id_layanan` = `l`.`id_layanan`)) WHERE `r`.`status_periksa` = 'Selesai' GROUP BY `r`.`tanggal_reservasi` ;
+CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `view_laporan_omzet`  AS SELECT `r`.`tanggal_reservasi` AS `tanggal_reservasi`, count(`r`.`id_reservasi`) AS `jumlah_pasien`, sum(`l`.`harga`) AS `total_pendapatan` FROM (`reservasi` `r` join `layanan` `l` on(`r`.`id_layanan` = `l`.`id_layanan`)) WHERE `r`.`status_periksa` = 'Selesai' GROUP BY `r`.`tanggal_reservasi` ;
 
 --
 -- Indexes for dumped tables
